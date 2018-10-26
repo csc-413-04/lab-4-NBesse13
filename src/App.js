@@ -39,18 +39,20 @@ class App extends Component {
     let myBanner;
     let image;
     if (this.state.isOpen){
-      image = <img src={logo} className="App-logo" alt="logo" /> 
+      image = <img src={logo} className="App-logo" alt="logo"/> 
     }
     else{
       image = <img style={{visibility: "hidden"}} src={logo} className="App-logo" alt="logo" />
     }
+    // if(this.props.doTest){
+    //   myVariable = <h2>Reducer Works</h2>
+    // }
     return (
       <div className="App">
         <header className="App-header">
           {image}
-          <p>
-          {myBanner}
-          </p>
+          <Header/>
+          {this.props.test}
           <input value={this.state.banner} onChange={this.textHandler}/>
           <button onClick={this.buttonhandler} >Click Me</button>
         </header>
