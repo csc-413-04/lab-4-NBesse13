@@ -3,17 +3,56 @@ import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 import { doTest } from './redux/actions';
+import Header from './Header';
 
 class App extends Component {
+  constructor (props){
+    super(props);
+    this.state = {
+      color: 'black',
+      banner: 'hello',
+      isOpen: false,
+    };
+    this.buttonhandler = this.buttonhandler.bind(this);
+    this.textHandler = this.textHandler.bind(this);
+    // this.buttonHandler2 = this.buttonHandler2.bind(this);
+  }
+  buttonhandler(){
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
+  }
+  // buttonHandler2(){
+  //   this.setState({
+  //     isOpen: !this.state.isOpen,
+  //   });
+  // }
+
+  textHandler(e){
+    this.setState({
+      banner: e.target.value,
+    })
+  }
+
   render() {
+    let myVariable = <h2>Nick</h2>
+    let myBanner;
+    let image;
+    if (this.state.isOpen){
+      image = <img src={logo} className="App-logo" alt="logo" /> 
+    }
+    else{
+      image = <img style={{visibility: "hidden"}} src={logo} className="App-logo" alt="logo" />
+    }
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          {image}
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+          {myBanner}
           </p>
-          <h2>413 Starter Kit </h2>
+          <input value={this.state.banner} onChange={this.textHandler}/>
+          <button onClick={this.buttonhandler} >Click Me</button>
         </header>
       </div>
     );
